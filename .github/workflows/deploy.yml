@@ -1,43 +1,34 @@
 name: Deploy Shopco to AWS EC2
 
 on:
-push:
-branches:
-- main
+  push:
+    branches:
+      - main
 
 jobs:
-deploy:
-runs-on: ubuntu-latest
+  deploy:
+    runs-on: ubuntu-latest
 
-```
-steps:
-  - name: Checkout
-    uses: actions/checkout@v4
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-  - name: Deploy to EC2
-    uses: appleboy/ssh-action@v1.0.3
-
-    with:
-      host: ${{ secrets.EC2_HOST }}
-      username: ${{ secrets.EC2_USER }}
-      key: ${{ secrets.EC2_SSH_KEY }}
-      port: 22
-
-      script: |
-        cd ~/shopco
-
-        git pull origin main
-
-        npm install
-
-        if [ -d "frontend" ]; then
-          cd frontend
-          npm install
-          npm run build
-          cd ..
-        fi
-
-        pm2 restart shopco || pm2 start backend/server.js --name shopco
-
-        pm2 save
-```
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          port: 22
+          script: |
+            cd ~/shopco
+            git pull origin main
+            npm install
+            if [ -d "frontend" ]; then
+              cd frontend
+              npm install
+              npm run build
+              cd ..
+            fi
+            pm2 restart shopco || pm2 start backend/server.js --name shopco
+            pm2 save
