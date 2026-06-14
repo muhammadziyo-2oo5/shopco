@@ -12,7 +12,7 @@ const DB_PATH = path.join(__dirname, 'database.sqlite');
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(path.join(__dirname, '..', 'frontend')));
 
 // Connect to SQLite Database
 const db = new sqlite3.Database(DB_PATH, (err) => {
@@ -516,7 +516,7 @@ app.put('/api/orders/:id/status', authenticateToken, (req, res) => {
 
 // Catch-all to serve Frontend
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, '..', 'frontend', 'index.html'));
 });
 
 app.listen(PORT, () => {
