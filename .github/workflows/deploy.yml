@@ -22,7 +22,9 @@ jobs:
           port: 22
           script: |
             cd ~/shopco
-            git pull origin main
+            git checkout main
+            git fetch --all
+            git reset --hard origin/main
             npm install
             if [ -d "frontend" ]; then
               cd frontend
@@ -30,5 +32,6 @@ jobs:
               npm run build
               cd ..
             fi
-            pm2 restart shopco || pm2 start backend/server.js --name shopco
+            pm2 delete shopco || true
+            pm2 start backend/server.js --name shopco
             pm2 save
