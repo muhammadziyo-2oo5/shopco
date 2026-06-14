@@ -24,7 +24,7 @@ export default function Landing({ onNavigate }) {
           <div className="hero-editorial">
             <span className="editorial-badge">PREMIUM B2B CLOTHING</span>
             <h1 className="editorial-title">
-              Muhammadziyo<br />
+              Ulgurji Kiyim-Kechakning<br />
               <span className="highlight">Yangi Davri</span>
             </h1>
             <p className="editorial-desc">
