@@ -22,7 +22,7 @@ export default function Landing({ onNavigate }) {
         <div className="split-hero-container">
           {/* Left Editorial Text */}
           <div className="hero-editorial">
-            <span className="editorial-badge">PREMIUM B2B CLOTHING</span>
+            {/* <span className="editorial-badge">PREMIUM B2B CLOTHING</span> */}
             <h1 className="editorial-title">
               Ulgurji Kiyim-Kechakning<br />
               <span className="highlight">Yangi Davri</span>
